@@ -12,5 +12,9 @@ int main(void){
         counter--;
     }
 
+    for ( int i = 0; i <= 5; i++){
+        printf("Contando y sumando %d \n",i);
+    }
+
     return 0;
 }
