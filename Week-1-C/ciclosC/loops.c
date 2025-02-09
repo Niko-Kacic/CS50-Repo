@@ -2,14 +2,14 @@
 #include <locale.h>
 
 void counter(int n);//Prototipo de la función
-int validatePositiveNumber(int n);
+int validatePositiveNumber(int *n);
 
 int main(void){
     setlocale(LC_ALL, "");
 
-    int n ;
+    int a ;
 
-    validatePositiveNumber(n);
+    validatePositiveNumber(&a);
 
     // int counter = 3;
 
@@ -21,16 +21,19 @@ int main(void){
     return 0;
 }
 
-int validatePositiveNumber(int n){
+int validatePositiveNumber(int *n){
     do {    
         printf("Ingrese un número: ");
-        if (scanf("%d", &n)!=1){
+        if (scanf("%d", n)!=1){
             printf("Ingrese un número valido ");
             return 1;
         }else {
-            counter(n);
+            counter(*n);
         }
-    }while( n < 0);
+    }while( *n < 0);
+
+    return 0;
+
 }
 
 void counter(int n){
