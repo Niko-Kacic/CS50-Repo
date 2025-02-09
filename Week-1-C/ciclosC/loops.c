@@ -6,14 +6,21 @@ void counter(int n);//Prototipo de la función
 int main(void){
     setlocale(LC_ALL, "");
 
+    int n;
+    printf("Ingrese un número: ");
+    if (scanf("%d", &n)!=1){
+        printf("Ingrese un número valido ");
+        return 1;
+    }else {
+        counter(n);
+    }
+
     // int counter = 3;
 
     // while(counter > 0){
     //     printf("Menos %d \n",counter);
     //     counter--;
     // }
-
-    counter(10);
 
     return 0;
 }
