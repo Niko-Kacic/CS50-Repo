@@ -7,13 +7,16 @@ int main(void){
     setlocale(LC_ALL, "");
 
     int n;
-    printf("Ingrese un número: ");
-    if (scanf("%d", &n)!=1){
-        printf("Ingrese un número valido ");
-        return 1;
-    }else {
-        counter(n);
-    }
+
+    do {    
+        printf("Ingrese un número: ");
+        if (scanf("%d", &n)!=1){
+            printf("Ingrese un número valido ");
+            return 1;
+        }else {
+            counter(n);
+        }
+    }while( n < 0);
 
     // int counter = 3;
 
