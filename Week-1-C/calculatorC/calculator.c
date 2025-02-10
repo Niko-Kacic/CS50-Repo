@@ -5,12 +5,17 @@ typedef struct {
     double num1;
     double num2;
     double result;    
-    int choise;
+    int choice;
 } Numbers;
 
 
 void cleanBuffer();
-double addNums(Numbers *numbers);
+int validarEntradaInt(int *input);
+int validarEntradaDouble(double *input);
+
+void addNums(Numbers *numbers);
+void sustracNums(Numbers *numbers);
+void mutiplyNum(Numbers *numbers);
 
 int main(void){
     setlocale(LC_ALL, "");
@@ -19,28 +24,34 @@ int main(void){
 
     do {
         printf("Ingrese una opción 1 o 2: \n");
-        if (scanf("%d", &numbers.choise)!=1){
-            printf("Ingrese un npumero valido\n");
-            cleanBuffer();
-        }else{
-            switch (numbers.choise)
-            {
+        if (!validarEntradaInt(&numbers.choice)) {
+            continue;
+        }else {
+            switch (numbers.choice) {
                 case 1:
-                    printf("Opción uno");
+                    printf("Opción uno\n");
                     addNums(&numbers);
                     printf("La suma de %.1lf y %.1lf es: %.1lf\n", numbers.num1, numbers.num2, numbers.result);
-                    numbers.choise = 0;
+                    numbers.choice = 0;
                     break;
                 case 2:
-                    printf("Opción dos");
-                    numbers.choise = 0;
+                    printf("Opción dos\n");
+                    sustracNums(&numbers);
+                    printf("La resta de %.1lf y %.1lf es: %.1lf\n", numbers.num1, numbers.num2, numbers.result);
+                    numbers.choice = 0;
                     break;
+                case 3:
+                    printf("Opción tres\n");
+                    mutiplyNum(&numbers);
+                    printf("La multiplicación de %.1lf y %.1lf es: %.1lf\n", numbers.num1, numbers.num2, numbers.result);
+                    numbers.choice = 0;
                 default:
+                    printf("Opción no válida\n");
                     break;
             }
-        }    
+        }  
 
-    }while(numbers.choise !=0);
+    }while(numbers.choice !=0);
 }
 
 void cleanBuffer() {
@@ -50,19 +61,42 @@ void cleanBuffer() {
     }    
 }
 
-double addNums(Numbers *numbers){
-    
-    printf("Ingrese un número: ");
-        if (scanf("%lf", &numbers->num1)!=1){
-            printf("Ingrese un número valido ");
-            cleanBuffer();
-        }
+int validarEntradaInt(int *input) {
+    if (scanf("%d", input) != 1) {
+        printf("Ingrese un número válido\n");
+        cleanBuffer();
+        return 0;  
+    }
+    return 1;
+}
 
-    printf("Ingrese otro número: ");
-        if (scanf("%lf", &numbers->num2)!=1){
-            printf("Ingrese un número valido ");
-            cleanBuffer();
-        }
+int validarEntradaDouble(double *input) {
+    if (scanf("%lf", input) != 1) {
+        printf("Ingrese un número válido\n");
+        cleanBuffer();
+        return 0; 
+    }
+    return 1;  
+}
+
+
+void addNums(Numbers *numbers) {
+    while (!validarEntradaDouble(&numbers->num1));
+    while (!validarEntradaDouble(&numbers->num2));
     
     numbers->result = numbers->num1 + numbers->num2;
+}
+
+void sustracNums(Numbers *numbers) {
+    while (!validarEntradaDouble(&numbers->num1));
+    while (!validarEntradaDouble(&numbers->num2));
+    
+    numbers->result = numbers->num1 - numbers->num2;
+}
+
+void mutiplyNum(Numbers *numbers){
+    while (!validarEntradaDouble(&numbers->num1));
+    while (!validarEntradaDouble(&numbers->num2));
+
+    numbers->result = numbers->num1 * numbers->num2;
 }
