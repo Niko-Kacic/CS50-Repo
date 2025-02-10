@@ -114,9 +114,18 @@ void multiplyNum(Numbers *numbers){
     numbers->result = numbers->num1 * numbers->num2;
 }
 
-void divideNum(Numbers *numbers){
+void divideNum(Numbers *numbers) {
     while (!validarEntradaDouble(&numbers->num1));
-    while (!validarEntradaDouble(&numbers->num2));
+    
+    do {
+        if (!validarEntradaDouble(&numbers->num2)) {
+            continue;
+        }
+        if (numbers->num2 == 0) {
+            printf("No se puede dividir por cero. Ingrese otro número.\n");
+        }
+    } while (numbers->num2 == 0);
 
     numbers->result = numbers->num1 / numbers->num2;
 }
+
