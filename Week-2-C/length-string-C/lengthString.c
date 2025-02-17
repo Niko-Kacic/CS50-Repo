@@ -15,8 +15,6 @@ int main(void){
         lenString--;
     }
 
-
-
     printf("El largo la palabra %s es de %zu caracteres", lengthString, lenString);
 
     return 0;
