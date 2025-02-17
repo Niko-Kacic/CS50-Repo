@@ -14,7 +14,13 @@ int main(void) {
 
     printf("Output: ");
     for (int i = 0; i < changeTo; i++) {
-        printf("%c ", toTransform[i]);
+
+        if(toTransform[i] >= 'a' && toTransform[i] <= 'z'){
+            printf("%c",toTransform[i]-32 );
+        }else{
+            printf("%c ", toTransform[i]);
+        }
+        
     }
     printf("\n");  
 
