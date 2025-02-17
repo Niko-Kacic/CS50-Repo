@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 int main(void) {
     char toTransform[50];
@@ -15,11 +16,7 @@ int main(void) {
     printf("Output: ");
     for (int i = 0; i < changeTo; i++) {
 
-        if(toTransform[i] >= 'a' && toTransform[i] <= 'z'){
-            printf("%c",toTransform[i]-32 );
-        }else{
-            printf("%c ", toTransform[i]);
-        }
+            printf("%c", toupper(toTransform[i]));
         
     }
     printf("\n");  
